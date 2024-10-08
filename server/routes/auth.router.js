@@ -7,6 +7,7 @@ const protectedMiddleware = require('../middleware/protectedMiddleware');
 router.post('/register', authController.register);
 router.post('/login', authController.login);
 router.get('/login', protectedMiddleware, authController.loginWithToken);
+router.post('/logout', authController.logout);
 
 module.exports = router;
 
