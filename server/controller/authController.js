@@ -39,7 +39,7 @@ exports.login = async (req, res) => {
 
         if (isVerified) {
             const token = generateToken({ number }); // Include necessary data in the token
-            res.cookie('token', token, { maxAge: 3600_000, httpOnly: true, secure: true,
+            res.cookie('token', token, { maxAge: 3600_000, httpOnly: true, secure: false,
                 sameSite: 'lax'}); // Token expires in 1 hour
             res.status(200).json({ message: 'Logged in successfully', token, user: userData });
         } else {
