@@ -41,11 +41,7 @@ exports.login = async (req, res) => {
             const token = generateToken({ number }); // Include necessary data in the token
             res.cookie('token', token, { maxAge: 3600_000, httpOnly: true, secure:process.env.NODE_ENV === 'production',  
                 sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',  path: '/',}); // Token expires in 1 hour
-            res.status(200).json({ message: 'Logged in successfully', token, user: {
-                username: user.username,  // Make sure the username is returned
-                email: user.email,
-                number: user.number,
-              }});
+            res.status(200).json({ message: 'Logged in successfully', token, userData});
         } else {
             res.status(401).json({ message: 'Invalid password' });
         }
